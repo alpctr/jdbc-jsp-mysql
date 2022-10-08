@@ -11,3 +11,31 @@ CREATE TABLE `employee` (
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
+
+
+
+```yml
+version: '3'
+services:
+    jdbc-jsp-mysql:
+        image:
+           alpctr/jdbc-jsp-mysql:0.0.7-SNAPSHOT
+        ports:
+         - 0080:8080
+        environment:
+            spring.datasource.url: "jdbc:mysql://mysql:3306/mysql_database?useSSL=false"
+
+    mysql:
+        image:
+            mysql:latest
+        ports:
+        - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+```
+
+```
+FROM tomcat
+
+COPY jdbc-jsp-mysql-0.0.7-SNAPSHOT.war /usr/local/tomcat/webapps/
+```
