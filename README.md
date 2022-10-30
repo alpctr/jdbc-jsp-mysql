@@ -13,6 +13,7 @@ CREATE TABLE `employee` (
 ```
 
 
+docker-compse myApp.yaml:
 
 ```yml
 version: '3'
@@ -33,8 +34,9 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: password
 ```
+Dockerfile:
 
-```
+```dockerfile
 FROM tomcat
 
 COPY jdbc-jsp-mysql-0.0.7-SNAPSHOT.war /usr/local/tomcat/webapps/
